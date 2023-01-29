@@ -16,7 +16,7 @@ import com.bookstore.repositories.userRepositoryInt;
 public class userService implements userServiceInt {
 
     @Autowired
-    private userRepositoryInt userRepository;
+    private userRepositoryInt userRepository; // Injects userRepositoryInt to use it's stuff
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -39,5 +39,4 @@ public class userService implements userServiceInt {
     public void makeAdmin(String username) {
         userRepository.updateRole(username, role.Admin);
     }
-
 }

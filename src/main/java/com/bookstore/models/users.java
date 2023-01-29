@@ -35,4 +35,3 @@ public class users {
     @Column(name = "Role", nullable = false)
     private role role;
 }
-
