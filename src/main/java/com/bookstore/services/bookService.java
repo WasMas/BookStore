@@ -10,14 +10,14 @@ import com.bookstore.repositories.bookRepositoryInt;
 
 @Service
 public class bookService implements bookServiceInt {
-
+    // Recommended way of injecting stuff
     private final bookRepositoryInt bookRepository;
 
     // @Autowired not needed as we have only use 1 constructor
     public bookService(bookRepositoryInt bookRepository) {
         this.bookRepository = bookRepository;
     }
-    // Recommended way of injecting stuff
+    // Alternative Way: @Autowired bookRepositoryInt bookRepository;
 
     @Override
     public book saveBook(book book) {

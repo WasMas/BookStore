@@ -15,8 +15,11 @@ import com.bookstore.repositories.userRepositoryInt;
 @Service
 public class userService implements userServiceInt {
 
-    @Autowired
-    private userRepositoryInt userRepository; // Injects userRepositoryInt to use it's stuff
+    private final userRepositoryInt userRepository;
+
+    public userService(userRepositoryInt userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Autowired
     private PasswordEncoder passwordEncoder;
