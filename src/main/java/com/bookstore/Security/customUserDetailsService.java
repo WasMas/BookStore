@@ -27,7 +27,8 @@ public class customUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(username));
         Set<GrantedAuthority> authorities = Set.of(securityUtils.convertToAuthority(user.getRole().name()));
         return userPrincipal.builder()
-                .user(user).id(user.getId_user())
+                .user(user)
+                .id(user.getId_user())
                 .username(user.getUsername())
                 .password(user.getPassword())
                 .authorities(authorities)
