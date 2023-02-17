@@ -33,8 +33,9 @@ public class jwtProvider implements jwtProviderInt {
         String authorities = auth.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining());
-        return Jwts.builder().setSubject(auth.getUsername()).claim("roles", authorities)
-                .claim("user", auth.getId())
+        return Jwts.builder().setSubject(auth.getUsername())
+                .claim("roles", authorities)
+                .claim("userId", auth.getId())
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION))
                 .signWith(SignatureAlgorithm.HS512, JWT_SECRET)
                 .compact();
@@ -42,6 +43,10 @@ public class jwtProvider implements jwtProviderInt {
 
     @Override
     public Authentication getAuthentication(HttpServletRequest request) {
+        String token = securityUtils.extractAuthTokenFromReq(request);
+        if (token == null) {
+            return null;
+        }
         Claims claims = extractClaims(request);
         if (claims == null) {
             return null;
