@@ -1,5 +1,6 @@
 package com.bookstore.Security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +21,9 @@ import com.bookstore.Security.jwt.jwtAuthorizationFilter;
 @EnableWebSecurity
 @Configuration
 public class securityConfig {
+
+    @Value("${authentication.internal-api-key}")
+    private String internalApiKey;
 
     private customUserDetailsService userDetailsService;
 
@@ -69,4 +73,10 @@ public class securityConfig {
             }
         };
     }
+
+    @Bean
+    public internalApiAuthenticationFilter internalApiAuthenticationFilter(){
+        return new internalApiAuthenticationFilter(internalApiKey);
+    }
+
 }

@@ -20,3 +20,6 @@ app:
     secret: RandomSecretKey     
     #expire after 1 day
     expiration-in-ms: 86400000
+
+authentication:
+  internal-api-key: InternalApiKey1234!

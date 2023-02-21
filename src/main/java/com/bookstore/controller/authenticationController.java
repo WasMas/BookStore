@@ -28,7 +28,7 @@ public class authenticationController {
         }
         return new ResponseEntity<>(userService.saveUsers(user), HttpStatus.CREATED);
     }
-    
+
     @PostMapping("sign-in")
     public ResponseEntity<?> signIn(@RequestBody users user) {
         return new ResponseEntity<>(authenticationService.signInAndReturnJWT(user),
