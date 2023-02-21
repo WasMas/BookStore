@@ -11,21 +11,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "history")
+@Table(name = "purchaseHistory")
 public class purchaseHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_purchase;
+    private Long id_purchase;
 
     @Column(name = "id_user", nullable = false)
-    private long id_user;
+    private Long id_user;
 
     @Column(name = "id_book", nullable = false)
-    private long id_book;
+    private Long id_book;
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private Double price;
 
-    @Column(name = "purchase_date", nullable = false)
-    private LocalDateTime purchaseDate;
+    
+    @Column(name = "purchaseTime", nullable = false)
+    private LocalDateTime purchaseTime;
 }

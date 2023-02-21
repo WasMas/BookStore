@@ -3,7 +3,7 @@ spring:
     ansi:
       enabled: ALWAYS
   datasource:
-    url: jdbc:postgresql://localhost:5432/Books
+    url: jdbc:postgresql://localhost:5432/bookstore
     username: Learn_Project
     password: 123
     driver-class-name: org.postgresql.Driver

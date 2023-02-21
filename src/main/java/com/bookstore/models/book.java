@@ -15,7 +15,7 @@ import lombok.Data;
 public class book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_book;
+    private Long id_book;
 
     @Column(name = "title", nullable = false)
     private String title;

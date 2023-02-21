@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.bookstore.Security.jwt.jwtAuthorizationFilter;
+import com.bookstore.models.role;
 
 @EnableWebSecurity
 @Configuration
@@ -50,10 +51,15 @@ public class securityConfig {
         http.cors();
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeHttpRequests().requestMatchers("/api/authentication/**")
-                .permitAll().anyRequest().authenticated();
+        http.authorizeHttpRequests()
+        .requestMatchers("/api/authentication/**").permitAll()
+        .requestMatchers("api/internal/**").hasRole(role.SYSTEM_MANAGER.name())
+        .anyRequest().authenticated();
 
-        http.addFilterAt(jwtAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class);
+        // * JWT Filter
+        // Internal > jwt > authentication
+        http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(internalApiAuthenticationFilter(), jwtAuthorizationFilter.class);
 
     }
 
@@ -75,7 +81,7 @@ public class securityConfig {
     }
 
     @Bean
-    public internalApiAuthenticationFilter internalApiAuthenticationFilter(){
+    public internalApiAuthenticationFilter internalApiAuthenticationFilter() {
         return new internalApiAuthenticationFilter(internalApiKey);
     }
 

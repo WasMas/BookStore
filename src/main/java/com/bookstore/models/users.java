@@ -18,7 +18,7 @@ import lombok.Data;
 public class users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_user; // Create an Id as priamry key
+    private Long id_user; // Create an Id as priamry key
 
     @Column(name = "username", unique = true, nullable = false) // Create a column
     private String username;

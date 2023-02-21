@@ -12,18 +12,18 @@ import com.bookstore.repositories.projection.purchaseItemInt;
 public class purchaseHistoryService implements purchaseHistoryServiceInt {
     private final purchaseHistoryInt purchaseHistoryRepository;
 
-    public purchaseHistoryService(purchaseHistoryInt purchaseHistory) {
-        this.purchaseHistoryRepository = purchaseHistory;
+    public purchaseHistoryService(purchaseHistoryInt purchaseHistoryRepository) {
+        this.purchaseHistoryRepository = purchaseHistoryRepository;
     }
 
     @Override
     public purchaseHistory savePurchase(purchaseHistory purchase) {
-        purchase.setPurchaseDate(LocalDateTime.now());
+        purchase.setPurchaseTime(LocalDateTime.now());
         return purchaseHistoryRepository.save(purchase);
     }
 
     @Override
-    public List<purchaseItemInt> findUserPurchase(Long id) {
-        return purchaseHistoryRepository.findAllPurchasesOfUser(id);
+    public List<purchaseItemInt> findUserPurchase(Long userId) {
+        return purchaseHistoryRepository.findAllPurchasesOfUser(userId);
     }
 }
