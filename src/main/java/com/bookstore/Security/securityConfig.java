@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -47,20 +48,21 @@ public class securityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors();
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeHttpRequests()
-        .requestMatchers("/api/authentication/**").permitAll()
-        .requestMatchers("api/internal/**").hasRole(role.SYSTEM_MANAGER.name())
-        .anyRequest().authenticated();
+                .requestMatchers("/api/authentication/**").permitAll()
+                .requestMatchers("/api/internal/**").hasRole(role.SYSTEM_MANAGER.name())
+                .anyRequest().authenticated();
 
         // * JWT Filter
         // Internal > jwt > authentication
         http.addFilterBefore(jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(internalApiAuthenticationFilter(), jwtAuthorizationFilter.class);
-
+        return http.build();
     }
 
     @Bean
@@ -84,5 +86,4 @@ public class securityConfig {
     public internalApiAuthenticationFilter internalApiAuthenticationFilter() {
         return new internalApiAuthenticationFilter(internalApiKey);
     }
-
 }

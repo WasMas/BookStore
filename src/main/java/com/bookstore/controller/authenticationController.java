@@ -13,7 +13,7 @@ import com.bookstore.services.userServiceInt;
 import com.bookstore.models.users;
 
 @RestController
-@RequestMapping("/api/authentication") // pre-path
+@RequestMapping("api/authentication") // pre-path
 public class authenticationController {
     @Autowired
     private authenticationServiceInt authenticationService;
@@ -22,7 +22,7 @@ public class authenticationController {
     private userServiceInt userService;
 
     @PostMapping("sign-up")
-    public ResponseEntity<users> signUp(@RequestBody users user) {
+    public ResponseEntity<?> signUp(@RequestBody users user) {
         if (userService.findByUsername(user.getUsername()).isPresent()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }

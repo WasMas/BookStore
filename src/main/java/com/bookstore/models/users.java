@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "users") // DataBase Table name (default = className)
+@Table(name = "users") // DataBase Table name (default = className capitalized)
 public class users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
