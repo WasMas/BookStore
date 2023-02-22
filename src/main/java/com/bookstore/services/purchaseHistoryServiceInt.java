@@ -8,5 +8,5 @@ import com.bookstore.repositories.projection.purchaseItemInt;
 public interface purchaseHistoryServiceInt {
     public purchaseHistory savePurchase(purchaseHistory purchase);
 
-    public List<purchaseItemInt> findUserPurchase(Long id);
+    public List<purchaseItemInt> findUserPurchases(Long id);
 }

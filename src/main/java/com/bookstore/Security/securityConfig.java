@@ -3,6 +3,7 @@ package com.bookstore.Security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -56,6 +57,8 @@ public class securityConfig {
         http.authorizeHttpRequests()
                 .requestMatchers("/api/authentication/**").permitAll()
                 .requestMatchers("/api/internal/**").hasRole(role.SYSTEM_MANAGER.name())
+                .requestMatchers(HttpMethod.GET,"/api/book").permitAll()
+                .requestMatchers("/api/book/**").hasRole(role.Admin.name())
                 .anyRequest().authenticated();
 
         // * JWT Filter

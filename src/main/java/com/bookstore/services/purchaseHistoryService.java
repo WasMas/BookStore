@@ -23,7 +23,7 @@ public class purchaseHistoryService implements purchaseHistoryServiceInt {
     }
 
     @Override
-    public List<purchaseItemInt> findUserPurchase(Long userId) {
+    public List<purchaseItemInt> findUserPurchases(Long userId) {
         return purchaseHistoryRepository.findAllPurchasesOfUser(userId);
     }
 }
