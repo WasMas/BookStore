@@ -23,19 +23,19 @@ public class bookController {
         this.bookService = bookService;
     }
 
-    @PostMapping //api/book
-    public ResponseEntity<?> saveBook(@RequestBody book book){
+    @PostMapping // api/book
+    public ResponseEntity<?> saveBook(@RequestBody book book) {
         return new ResponseEntity<>(bookService.saveBook(book), HttpStatus.CREATED);
     }
-    
-    @DeleteMapping("{bookId}") //api/book/{bookId}
-    public ResponseEntity<?> deleteBook(@PathVariable Long bookId)  {
+
+    @DeleteMapping("{bookId}") // api/book/{bookId}
+    public ResponseEntity<?> deleteBook(@PathVariable Long bookId) {
         bookService.deleteBook(bookId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping //api/book
-    public ResponseEntity<?> getAllBooks(){
-        return new ResponseEntity<>(bookService.getAllBooks(),HttpStatus.OK);
+    @GetMapping // api/book
+    public ResponseEntity<?> getAllBooks() {
+        return new ResponseEntity<>(bookService.getAllBooks(), HttpStatus.OK);
     }
 }

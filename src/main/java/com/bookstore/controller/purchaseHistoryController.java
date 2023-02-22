@@ -1,7 +1,5 @@
 package com.bookstore.controller;
 
-import java.nio.file.attribute.UserPrincipal;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bookstore.Security.userPrincipal;
 import com.bookstore.models.purchaseHistory;
-import com.bookstore.repositories.purchaseHistoryInt;
 import com.bookstore.services.purchaseHistoryServiceInt;
 
 import org.springframework.web.bind.annotation.GetMapping;
