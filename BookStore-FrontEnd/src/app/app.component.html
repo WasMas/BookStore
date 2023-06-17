@@ -8,21 +8,22 @@
     Angular
   </a>
 
-  <router-outlet></router-outlet>
   <div class="navbar-nav me-auto">
     <li class="nav-item">
-      <a href="" class="nav-link">Admin</a>
+      <a [routerLink]="['/admin']" routerLinkActive="active" class="nav-link">Admin</a>
     </li>
     <li class="nav-item">
-      <a href="" class="nav-link">Home</a>
+      <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link">Home</a>
     </li>
   </div>
   <div class="navbar-nav ms-auto">
     <li class="nav-item">
-      <a href="" class="nav-link">Sign up</a>
+      <a [routerLink]="['/register']" routerLinkActive="active" class="nav-link">Sign up</a>
     </li>
-    <li class="nav-item me-2">
-      <a href="" class="nav-link">Sign in</a>
+    <li class="nav-item me-1">
+      <a [routerLink]="['/login']" routerLinkActive="active" class="nav-link">Sign in</a>
     </li>
   </div>
 </div>
+
+<router-outlet></router-outlet>
