@@ -3,10 +3,10 @@
     <fa-icon [icon]="faUser" class="ms-auto me-auto user-icon"></fa-icon>
     <form
       #registerForm="ngForm"
-      (ngSubmit)="(registerForm.form.valid && register)"
+      (ngSubmit)="(registerForm.form.valid && register())"
     >
       <div class="alert alert-danger" *ngIf="errorMessage">
-        {{ errorMessage } }
+        {{errorMessage}}
       </div>
       <div class="form-group">
         <label for="name">Full Name</label>
