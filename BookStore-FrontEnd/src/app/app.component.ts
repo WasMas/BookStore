@@ -11,7 +11,7 @@ import { Role } from './models/role.enum';
 })
 export class AppComponent {
   title = 'BookStore-FrontEnd';
-  currentUser: User = new User ;
+  currentUser: User = new User();
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router

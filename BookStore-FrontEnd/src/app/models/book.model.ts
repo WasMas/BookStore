@@ -1,5 +1,5 @@
 export class Book {
-  id: number | undefined;
+  id_book: number | undefined;
   title: string = '';
   author: string = '';
   price: number = 0;
@@ -8,7 +8,7 @@ export class Book {
 
   // "?" = can be underfined
   constructor(id?: number, title: string = '', price: number = 0) {
-    this.id = id;
+    this.id_book = id;
     this.title = title;
     this.price = price;
   }

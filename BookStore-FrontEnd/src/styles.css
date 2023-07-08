@@ -1,13 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 /* @import "../node_modules/bootstrap/dist/css/bootstrap.min.css"; */
-.custom-card{
-  width:350px;
+.custom-card {
+  width: 350px;
   max-width: 100%;
   background-color: #eee;
 }
 
-
-.user-icon{
+.user-icon {
   font-size: 100px;
-  color:green;
+  color: green;
 }
