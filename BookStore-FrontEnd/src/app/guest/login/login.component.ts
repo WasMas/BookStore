@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.authenticationService.currentUserValue?.id) {
+    if (this.authenticationService.currentUserValue?.id_user) {
       this.router.navigate(['/profile']);
       return;
     }
