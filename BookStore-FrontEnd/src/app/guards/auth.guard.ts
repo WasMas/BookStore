@@ -25,14 +25,15 @@ class PermissionsService {
   }
 
   canActivate(
-    next: ActivatedRouteSnapshot,
+    route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
     if (this.currentUser) {
-      if (this.currentUser.role != (Role.Admin || Role.USER)) {
+      if (route.data['roles'].indexOf(this.currentUser.role) === -1) {
         this.router.navigate(['/401']);
         return false;
       }
+      return true;
     }
     this.router.navigate(['/login']);
     return true;
@@ -40,8 +41,8 @@ class PermissionsService {
 }
 
 export const authGuard: CanActivateFn = (
-  next: ActivatedRouteSnapshot,
+  route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): boolean => {
-  return inject(PermissionsService).canActivate(next, state);
+  return inject(PermissionsService).canActivate(route, state);
 };
