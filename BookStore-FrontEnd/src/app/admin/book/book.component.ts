@@ -27,6 +27,6 @@ export class BookComponent {
   }
 
   showBookModal() {
-    $('#bookmodal').modal('show');
+    $('#bookModal').modal('show');
   }
 }
