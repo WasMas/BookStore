@@ -17,7 +17,8 @@ export class BookComponent {
   saveBook() {
     this.bookService.saveBook(this.book).subscribe(
       (data) => {
-        // ..
+        $('#bookModal').modal('hide');
+        // TODO
       },
       (err) => {
         this.errorMessage = 'IDK WHAT HAPPENED SUE ME';
