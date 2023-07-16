@@ -13,6 +13,7 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
 import { UnauthorizedComponent } from './error/unauthorized/unauthorized.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BookComponent } from './admin/book/book.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     AdminComponent,
     NotFoundComponent,
     UnauthorizedComponent,
+    BookComponent,
   ],
   imports: [
     BrowserModule,
