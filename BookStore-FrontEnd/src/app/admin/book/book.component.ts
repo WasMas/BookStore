@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
 
@@ -10,7 +10,7 @@ declare var $: any;
   styleUrls: ['./book.component.css'],
 })
 export class BookComponent {
-  book: Book = new Book();
+  @Input() book: Book = new Book();
   errorMessage: String = '';
   @Output() save = new EventEmitter<any>();
   constructor(private bookService: BookService) {}

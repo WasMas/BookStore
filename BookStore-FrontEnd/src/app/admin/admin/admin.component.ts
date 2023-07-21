@@ -10,15 +10,30 @@ import { BookComponent } from '../book/book.component';
 })
 export class AdminComponent implements OnInit {
   bookList: Array<Book> = [];
+  selectedBook: Book = new Book();
   @ViewChild(BookComponent) child: BookComponent | undefined;
   constructor(private bookService: BookService) {}
   ngOnInit(): void {
     this.bookService.getAllbooks().subscribe((data) => (this.bookList = data));
   }
   createBookRequest() {
+    this.selectedBook= new Book();
     this.child?.showBookModal();
   }
-  saveBookWatcher(book: Book){
-    this.bookList.push(book);
+
+  editBookRequest(item: Book) {
+    this.selectedBook = Object.assign({}, item);
+    this.child?.showBookModal();
+  }
+
+  saveBookWatcher(book: Book) {
+    let itemIndex = this.bookList.findIndex(
+      (item) => item.id_book === book.id_book
+    );
+    if (itemIndex !== -1) {
+      this.bookList[itemIndex] = book;
+    } else {
+      this.bookList.push(book);
+    }
   }
 }

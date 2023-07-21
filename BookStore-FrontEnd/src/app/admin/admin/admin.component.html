@@ -31,7 +31,7 @@
               <td>{{ x.author }}</td>
               <td>{{ x.creation_date | date : "medium" }}</td>
               <td>
-                <button class="btn btn-primary me-1">Edit</button>
+                <button class="btn btn-primary me-1" (click)="editBookRequest(x)">Edit</button>
                 <button class="btn btn-danger me-1">Delete</button>
               </td>
             </tr>
@@ -42,4 +42,4 @@
   </div>
 </div>
 
-<app-book (save)="saveBookWatcher($event)"></app-book>
+<app-book [book]="selectedBook" (save)="saveBookWatcher($event)"></app-book>
