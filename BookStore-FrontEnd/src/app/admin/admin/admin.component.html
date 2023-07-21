@@ -1,5 +1,8 @@
 <div class="container">
   <div class="pt-5">
+    <div class="alert alert-danger" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
     <div class="card">
       <div class="card-header">
         <div class="row">
@@ -7,7 +10,9 @@
             <h3>All Books</h3>
           </div>
           <div class="col-6 text-end">
-            <button class="btn btn-primary" (click)="createBookRequest()">Create Book</button>
+            <button class="btn btn-primary" (click)="createBookRequest()">
+              Create Book
+            </button>
           </div>
         </div>
       </div>
@@ -31,8 +36,15 @@
               <td>{{ x.author }}</td>
               <td>{{ x.creation_date | date : "medium" }}</td>
               <td>
-                <button class="btn btn-primary me-1" (click)="editBookRequest(x)">Edit</button>
-                <button class="btn btn-danger me-1">Delete</button>
+                <button
+                  class="btn btn-primary me-1"
+                  (click)="editBookRequest(x)"
+                >
+                  Edit
+                </button>
+                <button class="btn btn-danger me-1" (click)="deleteBook(x, i)">
+                  Delete
+                </button>
               </td>
             </tr>
           </tbody>

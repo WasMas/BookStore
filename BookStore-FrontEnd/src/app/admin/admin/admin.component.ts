@@ -11,13 +11,14 @@ import { BookComponent } from '../book/book.component';
 export class AdminComponent implements OnInit {
   bookList: Array<Book> = [];
   selectedBook: Book = new Book();
+  errorMessage: String = '';
   @ViewChild(BookComponent) child: BookComponent | undefined;
   constructor(private bookService: BookService) {}
   ngOnInit(): void {
     this.bookService.getAllbooks().subscribe((data) => (this.bookList = data));
   }
   createBookRequest() {
-    this.selectedBook= new Book();
+    this.selectedBook = new Book();
     this.child?.showBookModal();
   }
 
@@ -35,5 +36,17 @@ export class AdminComponent implements OnInit {
     } else {
       this.bookList.push(book);
     }
+  }
+
+  deleteBook(item: Book, ind: number) {
+    this.bookService.deleteBook(item).subscribe(
+      (data) => {
+        this.bookList.splice(ind, 1);
+      },
+      (err) => {
+        this.errorMessage = "Couldn't Delete, SUE ME!";
+        console.log(err);
+      }
+    );
   }
 }
