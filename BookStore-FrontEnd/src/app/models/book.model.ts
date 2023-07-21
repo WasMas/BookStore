@@ -4,7 +4,7 @@ export class Book {
   author: string = '';
   price: number = 0;
   description: string = '';
-  createTime: Date = new Date();
+  creation_date: Date = new Date();
 
   // "?" = can be underfined
   constructor(id?: number, title: string = '', price: number = 0) {
