@@ -1,13 +1,13 @@
 export class purchaseHistory {
   id_purchase: number | undefined;
-  userId: number | undefined;
-  bookId: number | undefined;
+  id_book: number | undefined;
+  id_user: number | undefined;
   price: number | undefined;
-  purchase: Date = new Date();
+  purchase_time: Date = new Date();
 
-  constructor(id?: number, bookId?: number, price?: number) {
+  constructor(id?: number, id_book?: number, price?: number) {
     this.id_purchase = id;
-    this.bookId = bookId;
+    this.id_book = id_book;
     this.price = price;
   }
 }

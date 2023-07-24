@@ -8,12 +8,10 @@ import { environment } from 'src/environments/environment.development';
 
 const API_URL = `${environment.BASE_URL}/api/purchase-history`;
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PurchaseService extends RequestBaseService {
-
   constructor(
     authenticationService: AuthenticationService,
     httpClient: HttpClient

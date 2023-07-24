@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { Book } from 'src/app/models/book.model';
+import { purchaseHistory } from 'src/app/models/purchaseHistory.model';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { BookService } from 'src/app/services/book.service';
-import { PurchaseHistoryService } from 'src/app/services/purchase-service';
+import { PurchaseService } from 'src/app/services/purchase.service';
 
 @Component({
   selector: 'app-home',
@@ -18,19 +19,32 @@ export class HomeComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private bookService: BookService,
-    private purchaseHistoryService: PurchaseHistoryService
+    private purchaseService: PurchaseService
   ) {}
   ngOnInit(): void {
     this.bookService.getAllbooks().subscribe((data) => {
       this.bookList = data;
     });
   }
-  
-  purchase(item: Book){
-    if(this.authenticationService.currentUserValue?.id_user){
+
+  purchase(item: Book) {
+    if (!this.authenticationService.currentUserValue?.id_user) {
       this.errorMessage = 'You should log in';
       return;
     }
-    const purchase = new purch
+    const purchase = new purchaseHistory(
+      this.authenticationService.currentUserValue.id_user,
+      item.id_book,
+      item.price
+    );
+    this.purchaseService.savePurchase(purchase).subscribe(
+      (data) => {
+        this.infoMessage = 'Operation Completed Succefully';
+      },
+      (err) => {
+        this.errorMessage = 'IDK WHAT HAPPENED SUE ME';
+        console.log(err);
+      }
+    );
   }
 }
