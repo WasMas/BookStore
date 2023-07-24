@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
 import { AuthenticationService } from './authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { RequestBaseService } from './request-base.service';
 import { purchaseHistory } from '../models/purchaseHistory.model';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 const API_URL = `${environment.BASE_URL}/api/purchase-history`;
 
+
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class PurchaseHistoryService extends RequestBaseService {
+export class PurchaseService extends RequestBaseService {
+
   constructor(
     authenticationService: AuthenticationService,
     httpClient: HttpClient
