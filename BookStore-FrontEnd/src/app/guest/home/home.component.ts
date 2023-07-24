@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       },
       (err) => {
         this.errorMessage = 'IDK WHAT HAPPENED SUE ME';
-        console.log(err);
+        console.log(err)
       }
     );
   }
