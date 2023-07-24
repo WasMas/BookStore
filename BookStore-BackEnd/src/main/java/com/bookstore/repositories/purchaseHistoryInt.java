@@ -11,6 +11,6 @@ import com.bookstore.repositories.projection.purchaseItemInt;
 
 public interface purchaseHistoryInt extends JpaRepository<purchaseHistory, Long> {
         @Query(value = "SELECT b.title as title, ph.price as price, ph.purchase_time as purchaseTime " +
-                        "FROM purchase_history ph JOIN book b ON ph.id_purchase = b.id_book  WHERE ph.id_user = :userId", nativeQuery = true)
+                        "FROM purchase_history ph JOIN book b ON ph.id_book = b.id_book  WHERE ph.id_user = :userId", nativeQuery = true)
         List<purchaseItemInt> findAllPurchasesOfUser(@Param("userId") Long userId);
 }

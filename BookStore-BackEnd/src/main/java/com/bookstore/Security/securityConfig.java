@@ -20,7 +20,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.bookstore.Security.jwt.jwtAuthorizationFilter;
 import com.bookstore.models.role;
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 @Configuration
@@ -52,17 +51,15 @@ public class securityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors(withDefaults());
-        http.csrf(csrf -> csrf.disable());
-        http.sessionManagement(
-                sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.authorizeHttpRequests(
-                authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers("/api/authentication/**").permitAll()
-                        .requestMatchers("/api/internal/**").hasRole(role.SYSTEM_MANAGER.name())
-                        .requestMatchers(HttpMethod.GET, "/api/book").permitAll()
-                        .requestMatchers("/api/book/**").hasRole(role.Admin.name())
-                        .anyRequest().authenticated());
+        http.cors();
+        http.csrf().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeHttpRequests()
+                .requestMatchers("/api/authentication/**").permitAll()
+                .requestMatchers("/api/internal/**").hasRole(role.SYSTEM_MANAGER.name())
+                .requestMatchers(HttpMethod.GET,"/api/book").permitAll()
+                .requestMatchers("/api/book/**").hasRole(role.Admin.name())
+                .anyRequest().authenticated();
 
         // * JWT Filter
         // Internal > jwt > authentication
