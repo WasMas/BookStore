@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { Book } from 'src/app/models/book.model';
 import { purchaseHistory } from 'src/app/models/purchaseHistory.model';
@@ -19,7 +20,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private bookService: BookService,
-    private purchaseService: PurchaseService
+    private purchaseService: PurchaseService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.bookService.getAllbooks().subscribe((data) => {
@@ -30,6 +32,9 @@ export class HomeComponent implements OnInit {
   purchase(item: Book) {
     if (!this.authenticationService.currentUserValue?.id_user) {
       this.errorMessage = 'You should log in';
+      setTimeout(() => {
+        this.router.navigate(['/profile']);
+      }, 2000);
       return;
     }
     const purchase = new purchaseHistory(
@@ -43,7 +48,7 @@ export class HomeComponent implements OnInit {
       },
       (err) => {
         this.errorMessage = 'IDK WHAT HAPPENED SUE ME';
-        console.log(err)
+        console.log(err);
       }
     );
   }
