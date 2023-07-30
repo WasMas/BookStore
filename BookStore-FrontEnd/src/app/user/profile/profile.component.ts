@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/models/book.model';
 import { purchaseItem } from 'src/app/models/purchaseItem.model';
 import { PurchaseService } from 'src/app/services/purchase.service';
 
