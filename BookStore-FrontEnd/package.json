@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "config":"node set-env.js",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build-prod": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
